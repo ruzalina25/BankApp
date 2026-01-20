@@ -13,11 +13,22 @@ namespace BankApp
         static void Main(string[] args)
         {
             Bank bank = new Bank();
-            bank.AddAccount (new StandartAccount(1, "Рузалина", 1000));
-            bank.AddAccount (new StandartAccount(2, "Анна", 2000));
+            bank.AddAccount (new StandartAccount(1, "Рузалина", -500));
+            bank.AddAccount (new SavingsAccount(2, "Анна", 2000,5));
             var ac = bank.GetAccountByNumber(1);
-            bank.RemoveAccount(2);
+            var posbalance = bank.GetAccountPositivBalance();
+            var savingsAccount=bank.GetSavingsAccounts();
+            
             Console.WriteLine($"Счет:{ac.accountNumber},Владелец:{ac.owner},Баланс:{ac.balance}");
+            Console.WriteLine("Счета с положительным балансом:");
+            foreach(var acc in posbalance){
+                Console.WriteLine($"Счет:{acc.accountNumber},Владелец:{acc.owner},Баланс:{acc.balance}");
+            }
+            Console.WriteLine("Сберегательные счета:");
+            foreach (var acc in savingsAccount)
+            {
+                Console.WriteLine($"Счет:{acc.accountNumber},Владелец:{acc.owner},Баланс:{acc.balance}");
+            }
 
 
         }
