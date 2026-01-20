@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankApp.Models
 {
-    public class BankAccount
+    public abstract class BankAccount
     {
         private int AccountNumber;
         private string Owner;
@@ -51,11 +51,10 @@ namespace BankApp.Models
             Owner = owner;
             Balance = balance;
         }
+
+        public abstract void DisplayInfo();
+           
         
-        public void DisplayInfo()
-        {
-            Console.WriteLine($"Счет:{accountNumber},Владелец:{Owner},Баланс:{Balance}");
-        }
 
 
 

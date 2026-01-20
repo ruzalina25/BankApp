@@ -11,8 +11,10 @@ namespace BankApp
     {
         static void Main(string[] args)
         {
-            var a = new BankAccount(1, "Рузалина", 1000);
+            var a = new StandartAccount(1, "Рузалина", 1000);
+            var b = new SavingsAccount(2, "Анна", 2000, 5);
             a.DisplayInfo();
+            b.DisplayInfo();
         }
     }
 }
