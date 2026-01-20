@@ -24,10 +24,11 @@ namespace BankApp.Services
             return account.Where(a => a.balance > 0).ToList();
         }
 
-        public List<SavingsAccount> GetSavingsAccounts()
+        public List<BankAccount> GetAllAccount()
         {
-            return account.OfType<SavingsAccount>().ToList();
+            return account;
         }
+
 
     }
 }

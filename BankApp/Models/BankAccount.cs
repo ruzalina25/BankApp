@@ -15,7 +15,7 @@ namespace BankApp.Models
         public int accountNumber
         {
             get => AccountNumber;
-            private set
+            protected set
             {
                 if (value <=0)
                     throw new ArgumentException("Номер счета должен быть положительным");
@@ -26,7 +26,7 @@ namespace BankApp.Models
         public string owner
         {
             get => Owner;
-            private set
+            protected set
             {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException("Имя владельца не может быть пустым");
@@ -37,19 +37,39 @@ namespace BankApp.Models
         public decimal balance
         {
             get => Balance;
-            private set
+            protected set
             {
                 if (value < 0)
                     throw new ArgumentException("Баланс не может быть отрицательным");
-                balance = value;
+                Balance = value;
             }
         }
 
-        public BankAccount(int  accountNumber,string owner,decimal balance)
+        protected BankAccount(int accountNumber, string owner, decimal balance)
         {
-            AccountNumber = accountNumber;
-            Owner = owner;
-            Balance = balance;
+            this.accountNumber = accountNumber;
+            this.owner = owner;
+            this.balance = balance;
+          
+        }
+
+        public virtual void Deposit(decimal sum)
+        {
+            if (sum <= 0)
+                throw new ArgumentException("Сумма пополнени должна быть положительной.");
+            sum += balance;
+            
+        }
+
+        public virtual void Withdraw(decimal sum)
+        {
+            if (sum <= 0)
+                throw new Exception("Сумма должна быть положительной");
+
+            if (sum > balance)
+                throw new Exception("Недостаточно средств");
+
+            balance -= sum;
         }
 
         public abstract void DisplayInfo();
