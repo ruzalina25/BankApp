@@ -1,4 +1,5 @@
 ﻿using BankApp.Models;
+using BankApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,14 @@ namespace BankApp
     {
         static void Main(string[] args)
         {
-            var a = new StandartAccount(1, "Рузалина", 1000);
-            var b = new SavingsAccount(2, "Анна", 2000, 5);
-            a.DisplayInfo();
-            b.DisplayInfo();
+            Bank bank = new Bank();
+            bank.AddAccount (new StandartAccount(1, "Рузалина", 1000));
+            bank.AddAccount (new StandartAccount(2, "Анна", 2000));
+            var ac = bank.GetAccountByNumber(1);
+            bank.RemoveAccount(2);
+            Console.WriteLine($"Счет:{ac.accountNumber},Владелец:{ac.owner},Баланс:{ac.balance}");
+
+
         }
     }
 }

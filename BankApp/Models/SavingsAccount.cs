@@ -20,7 +20,7 @@ namespace BankApp.Models
         public override void DisplayInfo()
         {
             decimal calc = balance + (balance * Procent / 100);
-            Console.WriteLine($"Счет:{accountNumber},Владелец:{owner},Баланс:{balance},"+$"Баланс с процентами:{calc}({Procent}%)");
+            Console.WriteLine($"Сберегательный счет:{accountNumber},Владелец:{owner},Баланс:{balance},"+$"Баланс с процентами:{calc}({Procent}%)");
         }
 
     }
